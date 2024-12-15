@@ -32,50 +32,81 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-            height: 100%;
-            margin: 0;
-            padding: 0;
             background-image: url('https://i.imgur.com/UMYi74W.jpeg');
             background-repeat: no-repeat;
-            background-size: cover;
+            background-size: cover; /* Ensure the background fully covers the page */
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 60px; /* Space for navbar */
         }
 
-        a:hover {
-            text-decoration: underline;
+        .navbar {
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            backdrop-filter: blur(10px); /* Subtle blur effect */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 45px;
+            z-index: 373;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+        }
+
+        .navbar a {
+            color: #1E395B;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
         }
 
         .backdrop-blur {
             background: rgba(255, 255, 255, 0.3); /* Light background for glassmorphism */
             backdrop-filter: blur(10px); /* Frosted glass effect */
-            border-radius: 15px;
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
             padding: 20px;
-            margin-top: 60px; /* Space below the navbar */
             width: 90%; /* Responsive width */
             max-width: 500px; /* Max width */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+            text-align: center;
+        }
+
+        .social-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            color: black;
+        }
+
+        h1 {
+            margin: 10px 0;
         }
 
         h2 {
             color: black;
+            margin: 10px 0;
         }
-
-        a {
-            color: black;
-            text-decoration: none;
-        
-        }
-    <body class="flex flex-none content-center justify-center items-center flex-col p-2">
     </style>
 </head>
 <body>
+        
         <div class="navbar">
-      <a href="https://sonicfast2017.github.io/index.html" class="logo">
-         <img src="https://sonicfast2017.github.io/images/logo.png" alt="Logo" width="20" height="20">
-        <a href="index.html">Home</a>
-        <a href="programs.html">Programs</a>
-        <a href="credits.html">Credits</a>
-        <a href="archives.html">Custom OS/Software Archive</a>
-        <a href="socials.html">Socials</a>
+      <a href="./Sonicfan2017&#39;s Socials_files/logo.png" class="logo">
+            <img src="./Sonicfan2017&#39;s Socials_files/logo.png" alt="Logo" width="20" height="20">
+        </a><a href="https://sonicfantech.org/index.html">Home</a>
+        <a href="https://sonicfantech.org/programs.html">Programs</a>
+        <a href="https://sonicfantech.org/credits.html">Credits</a>
+        <a href="https://sonicfantech.org/archives.html">Custom OS/Software Archive</a>
+        <a href="https://sonicfantech.org/socials.html">Socials</a>
         <a href="https://sonicfast2017.github.io/games.html">Games</a>
         <a href="mailto:sonicTechYT@gmail.com">Contact</a>
     </div>
