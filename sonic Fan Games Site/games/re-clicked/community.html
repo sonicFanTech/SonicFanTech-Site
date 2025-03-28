@@ -58,18 +58,33 @@
             padding-bottom: 5px;
         }
 
-        /* Comments Section */
-        .comment-box {
-            width: 100%;
-            padding: 10px;
+        /* Custom Input Box Styles */
+        .input-box {
+            width: 90%;
+            max-width: 300px;
+            padding: 12px;
+            margin: 8px 0;
+            background-color: #1b2838;
+            color: #ffffff;
+            border: 2px solid #3a9ad9;
             border-radius: 5px;
-            margin-top: 10px;
             font-size: 1.1em;
+            outline: none;
+            transition: all 0.3s ease-in-out;
         }
 
-        .submit-btn {
+        .input-box:focus {
+            border-color: #66c0f4;
+            box-shadow: 0 0 10px #66c0f4;
+        }
+
+        /* Custom Button */
+        .custom-btn {
+            display: block;
+            width: 90%;
+            max-width: 320px;
+            padding: 12px;
             margin-top: 10px;
-            padding: 10px 15px;
             background-color: #66c0f4;
             color: black;
             font-weight: bold;
@@ -77,10 +92,20 @@
             cursor: pointer;
             transition: background 0.3s;
             border: none;
+            font-size: 1.1em;
         }
 
-        .submit-btn:hover {
+        .custom-btn:hover {
             background-color: #4a9edb;
+        }
+
+        /* Comments Section */
+        .comment-box {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 1.1em;
         }
 
         .comment-list {
@@ -127,17 +152,17 @@
     <!-- Game Jolt Login -->
     <div class="container">
         <h2>Game Jolt Login</h2>
-        <label>Username: </label><input type="text" id="gj-username">
-        <label>Token: </label><input type="password" id="gj-token">
-        <button onclick="loginGameJolt()">Login</button>
+        <input type="text" id="gj-username" class="input-box" placeholder="Game Jolt Username">
+        <input type="password" id="gj-token" class="input-box" placeholder="Game Jolt Token">
+        <button class="custom-btn" onclick="loginGameJolt()">Login</button>
         <p id="login-status"></p>
     </div>
 
     <!-- Comments Section -->
     <div class="container">
         <h2>Comments</h2>
-        <textarea id="comment-box" placeholder="Write your comment..."></textarea>
-        <button class="submit-btn" onclick="postComment()">Post Comment</button>
+        <textarea id="comment-box" class="input-box" placeholder="Write your comment..."></textarea>
+        <button class="custom-btn" onclick="postComment()">Post Comment</button>
         <div id="comments-section"></div>
     </div>
 
@@ -201,13 +226,12 @@
 
         loadComments(); // Load comments on page load
     </script>
-
+	
     <footer>
         <p>&copy; 2025 Sonic Fan Games & The Re-clicked Team</p>
 		<p>NOTE: THIS community PAGE IS BEING WORKED ON ATM, AND THE GAME JOLT LOG-IN AND comment
 		<BR>
 		SYSTEM ISN'T FULLY WORKING, The Website Owner is Working on the Server Stuff</p>
-    </footer>
 
 </body>
 </html>
