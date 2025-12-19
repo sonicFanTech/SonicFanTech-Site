@@ -303,6 +303,13 @@
   @media (max-width:520px){
     .thumb{height:110px;}
   }
+
+  .abs-date{
+    opacity: 0.75;
+    font-size: 12px;
+    margin-left: 6px;
+  }
+
 </style>
 </head>
 <body>
@@ -378,7 +385,7 @@
         <div class="meta">
           <div class="ver">v1.0</div>
           <div>•</div>
-          <div class="ver">Updated: 8-31-2025</div>
+          <div class="ver">Updated: <span class="rel-time" data-date="2025-08-31"></span></div>
         </div>
         <div class="actions">
           <a class="smallbtn download" href="https://github.com/sonicFanTech/DVDxPlayer/releases/download/Software/DVDxPlayer.exe" download>Download</a>
@@ -400,7 +407,7 @@
         <div class="meta">
           <div class="ver">v1</div>
           <div>•</div>
-          <div class="ver">Added: today</div>
+          <div class="ver">Added: <span class="rel-time" data-date="2025-12-18"></span></div>
         </div>
         <div class="actions">
           <a class="smallbtn download" href="https://github.com/sonicFanTech/EveryPlay/releases/download/v1/EveryPlay.7z" download>Download latest release</a>
@@ -421,7 +428,7 @@
         <div class="meta">
           <div class="ver">v2.0.9 BETA 4.2</div>
           <div>•</div>
-          <div class="ver">Updated: 2 days ago</div>
+          <div class="ver">Updated: <span class="rel-time" data-date="2025-12-16"></span></div>
         </div>
         <div class="actions">
           <a class="smallbtn download" href="https://github.com/sonicFanTech/vidplayer/releases/download/v2.0.8.1/vidplayer_2.0.8.1.exe" download>Download latest release</a>
@@ -495,45 +502,45 @@
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
   </script>
-  
+
   <script>
-  function formatRelativeDate(dateStr) {
-    const d = new Date(dateStr + "T00:00:00");
-    if (isNaN(d.getTime())) {
-      return dateStr; // fallback if date is invalid
+    // --- Auto "Added/Updated" relative time labels (no internet needed) ---
+    function relTimeFromDate(dateStr) {
+      // Accept YYYY-MM-DD
+      const d = new Date(dateStr + "T00:00:00");
+      if (isNaN(d)) return dateStr;
+
+      const now = new Date();
+      const ms = now - d;
+      const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+
+      if (days <= 0) return "today";
+      if (days === 1) return "yesterday";
+      if (days < 7) return `${days} days ago`;
+
+      const weeks = Math.floor(days / 7);
+      if (weeks < 5) return `${weeks} week${weeks===1?"":"s"} ago`;
+
+      const months = Math.floor(days / 30);
+      if (months < 12) return `${months} month${months===1?"":"s"} ago`;
+
+      const years = Math.floor(days / 365);
+      return `${years} year${years===1?"":"s"} ago`;
     }
 
-    const now = new Date();
-    const diffMs = now - d;
-    const dayMs = 24 * 60 * 60 * 1000;
-    const days = Math.floor(diffMs / dayMs);
+    // Fill spans like: <span class="rel-time" data-date="2025-12-18"></span>
+    document.querySelectorAll(".rel-time").forEach(el => {
+      const dateStr = (el.dataset.date || "").trim();
+      if (!dateStr) return;
 
-    if (days <= 0) return "today";
-    if (days === 1) return "1 day ago";
-    if (days < 31) return days + " days ago";
-
-    const months = Math.floor(days / 30);
-    if (months === 1) return "1 month ago";
-    if (months < 12) return months + " months ago";
-
-    const years = Math.floor(months / 12);
-    if (years === 1) return "1 year ago";
-    return years + " years ago";
-  }
-
-  function initRelativeDates() {
-    document.querySelectorAll(".date-tag[data-date]").forEach(el => {
-      const prefix = (el.dataset.prefix || "").trim();
-      const dateStr = el.dataset.date;
-      const rel = formatRelativeDate(dateStr);
-      el.textContent = prefix ? (prefix + " " + rel) : rel;
+      const rel = relTimeFromDate(dateStr);
+      // Show both: "2 days ago (2025-12-16)"
+      el.innerHTML = `${rel}<span class="abs-date">(${dateStr})</span>`;
+      // Exact date on hover too
+      el.title = dateStr;
     });
-  }
+    });
+  </script>
 
-  // Run once on load
-  initRelativeDates();
-</script>
-
-  
 </body>
 </html>
